@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+h1 {
+    font-family: "Comforter Brush", cursive;
+    font-weight: 600;
+    font-style: normal;
+}
+.main-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.left-section,
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    margin: 10px;
+    gap: 10px;
+}
+button {
+    color: rgb(255, 255, 255);
+    background-color: grey;
+    border: 1px transparent;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    width: 100px;
+    padding: 2px;
+    cursor: pointer;
+}
+#border-btn{
+    margin-top: 18px;
+    padding: 10px;
+    border: 3px solid grey;
+}
+#grid-size {
+    margin-top: 10px;
+    color: grey;
+    background-color:white ;
+    padding: 10px;
+    border: 3px solid grey;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    border: 4px solid black;
+    width: 448px;
+    cursor:crosshair;
+  }
+  
+#gridDiv {
+    border: 1px solid rgba(128, 128, 128, 0.263);
+    height: 26px;
+    width: 26px;
+}
+p {
+   text-align: center; 
+   margin-bottom: 18px;
+}
+.color-selection {
+    display: flex;
+}
+.color {
+    margin: 10px;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(128, 128, 128, 0);
+    border-radius: 50%;
+    cursor: pointer;
+}
+#black {
+    background-color: black;
+    border: 3px solid grey;
+
+}
+#red {
+    background-color: red;
+}
+#blue {
+    background-color: blue;
+}
+#green {
+    background-color: green;
+}
+
