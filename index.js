@@ -96,6 +96,7 @@ greenBtn.addEventListener('click',() => {
 
 // setting for hover event to only run if mouse left button is pressed //
 let isHoverActive = true;
+let isOpacityActive = false;
 let isLeftButtonPressed = false;
 let isRightButtonPressed = false;
 
@@ -106,6 +107,12 @@ hoverBtn.addEventListener('click',() => {
     hoverBtn.style.backgroundColor = isHoverActive ?'grey' :'white';
     hoverBtn.textContent= isHoverActive ?'Button' :'Hover';
 
+});
+opacityBtn.addEventListener('click',() => {
+    isOpacityActive = !isOpacityActive;  
+   
+    opacityBtn.style.color = isOpacityActive ?'white' :'grey';
+    opacityBtn.style.backgroundColor = isOpacityActive ?'grey' :'white';
 });
 
 document.addEventListener("mousedown",(event)=> {
@@ -131,15 +138,24 @@ for(i=1; i <= 16*16; i++) {
         if(isHoverActive){
             if(isLeftButtonPressed) {
                 divs.style.backgroundColor = activeColor;
+                if(isOpacityActive) {
+                    let currentOpacity = parseFloat(divs.style.opacity) || 0;
+                    if (currentOpacity < 1) {
+                        currentOpacity += 0.1;
+                        divs.style.opacity = currentOpacity.toFixed(1)
+                    }
+                } 
+            }
+        }
+        else {
+            divs.style.backgroundColor = activeColor;
+            if(isOpacityActive) {
                 let currentOpacity = parseFloat(divs.style.opacity) || 0;
                 if (currentOpacity < 1) {
                     currentOpacity += 0.1;
                     divs.style.opacity = currentOpacity.toFixed(1)
                 }
             }
-        }
-        else {
-            divs.style.backgroundColor = activeColor;
         }
         if(isRightButtonPressed) {
         divs.style.backgroundColor = 'white';
@@ -176,13 +192,32 @@ function createGrid (gridValue) {
         divs.style.height = `${pixelSize}px`;
 
         divs.addEventListener("mouseover",()=> {
-            if(isLeftButtonPressed) {
-             divs.style.backgroundColor = activeColor;
+            if(isHoverActive){
+                if(isLeftButtonPressed) {
+                    divs.style.backgroundColor = activeColor;
+                    if(isOpacityActive) {
+                        let currentOpacity = parseFloat(divs.style.opacity) || 0;
+                        if (currentOpacity < 1) {
+                            currentOpacity += 0.1;
+                            divs.style.opacity = currentOpacity.toFixed(1)
+                        }
+                    } 
+                }
             }
-            else if(isRightButtonPressed) {
-             divs.style.backgroundColor = 'white';
+            else {
+                divs.style.backgroundColor = activeColor;
+                if(isOpacityActive) {
+                    let currentOpacity = parseFloat(divs.style.opacity) || 0;
+                    if (currentOpacity < 1) {
+                        currentOpacity += 0.1;
+                        divs.style.opacity = currentOpacity.toFixed(1)
+                    }
+                }
             }
-         });
+            if(isRightButtonPressed) {
+            divs.style.backgroundColor = 'white';
+            }
+        });
      
          container.appendChild(divs);
      };
