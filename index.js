@@ -1,6 +1,8 @@
 const container = document.querySelector('.container');
 const customGrid = document.getElementById('grid-size');
 const borderBtn = document.getElementById('border-btn');
+const hoverBtn = document.getElementById('hover-press');
+const opacityBtn = document.getElementById('opacity-btn');
 
 // color change//
 const blackBtn = document.getElementById('black');
@@ -93,8 +95,18 @@ greenBtn.addEventListener('click',() => {
 });
 
 // setting for hover event to only run if mouse left button is pressed //
+let isHoverActive = true;
 let isLeftButtonPressed = false;
 let isRightButtonPressed = false;
+
+hoverBtn.addEventListener('click',() => {
+    isHoverActive = !isHoverActive;  
+   
+    hoverBtn.style.color = isHoverActive ?'white' :'grey';
+    hoverBtn.style.backgroundColor = isHoverActive ?'grey' :'white';
+    hoverBtn.textContent= isHoverActive ?'Button' :'Hover';
+
+});
 
 document.addEventListener("mousedown",(event)=> {
     if(event.button ===0) {
@@ -112,11 +124,24 @@ document.addEventListener("mouseup",()=> {
 for(i=1; i <= 16*16; i++) {
     const divs = document.createElement('div');
     divs.id = 'gridDiv';
+
+    
+
     divs.addEventListener("mouseover",()=> {
-       if(isLeftButtonPressed) {
-        divs.style.backgroundColor = activeColor;
+        if(isHoverActive){
+            if(isLeftButtonPressed) {
+                divs.style.backgroundColor = activeColor;
+                let currentOpacity = parseFloat(divs.style.opacity) || 0;
+                if (currentOpacity < 1) {
+                    currentOpacity += 0.1;
+                    divs.style.opacity = currentOpacity.toFixed(1)
+                }
+            }
         }
-       else if(isRightButtonPressed) {
+        else {
+            divs.style.backgroundColor = activeColor;
+        }
+        if(isRightButtonPressed) {
         divs.style.backgroundColor = 'white';
         }
     });
@@ -175,18 +200,17 @@ btn64.addEventListener('click',() => createGrid(64));
 let isBorderActive = true;
 borderBtn.addEventListener('click',() => {
     isBorderActive = !isBorderActive;
-    // if(isBorderActive) {
-        borderBtn.style.color = isBorderActive ?'white' :'grey';
-        borderBtn.style.backgroundColor = isBorderActive ?'grey' :'white';
+    
+    borderBtn.style.color = isBorderActive ?'white' :'grey';
+    borderBtn.style.backgroundColor = isBorderActive ?'grey' :'white';
 
-        const divs = document.querySelectorAll('#gridDiv');
+    const divs = document.querySelectorAll('#gridDiv');
 
-        divs.forEach(div => {
-            div.style.border = isBorderActive
-            ? '1px solid rgba(128, 128, 128, 0.263)'
-            : '1px solid rgba(128, 128, 128, 0)';
-        });
+    divs.forEach(div => {
+        div.style.border = isBorderActive
+        ? '1px solid rgba(128, 128, 128, 0.263)'
+        : '1px solid rgba(128, 128, 128, 0)';
+    });
     
 });
-
 
