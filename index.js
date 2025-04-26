@@ -17,6 +17,8 @@ let isGreenActive = false;
 
 let activeColor ="black";
 
+console.log(container)
+//color selection
 blackBtn.addEventListener('click',() => {
     isBlackActive = !isBlackActive;  
     if(isBlackActive) {
@@ -128,43 +130,6 @@ document.addEventListener("mouseup",()=> {
     isRightButtonPressed = false;
 });
 
-for(i=1; i <= 16*16; i++) {
-    const divs = document.createElement('div');
-    divs.id = 'gridDiv';
-
-    
-
-    divs.addEventListener("mouseover",()=> {
-        if(isHoverActive){
-            if(isLeftButtonPressed) {
-                divs.style.backgroundColor = activeColor;
-                if(isOpacityActive) {
-                    let currentOpacity = parseFloat(divs.style.opacity) || 0;
-                    if (currentOpacity < 1) {
-                        currentOpacity += 0.1;
-                        divs.style.opacity = currentOpacity.toFixed(1)
-                    }
-                } 
-            }
-        }
-        else {
-            divs.style.backgroundColor = activeColor;
-            if(isOpacityActive) {
-                let currentOpacity = parseFloat(divs.style.opacity) || 0;
-                if (currentOpacity < 1) {
-                    currentOpacity += 0.1;
-                    divs.style.opacity = currentOpacity.toFixed(1)
-                }
-            }
-        }
-        if(isRightButtonPressed) {
-        divs.style.backgroundColor = 'white';
-        }
-    });
-
-    container.appendChild(divs);
-};
-
 // custom Grid without changing total pixel//
 customGrid.addEventListener('click',pixelValue);
 
@@ -222,6 +187,8 @@ function createGrid (gridValue) {
          container.appendChild(divs);
      };
 }
+// declaring default grid
+createGrid(16)
 
 const btn16 = document.getElementById('16-size');
 const btn32 = document.getElementById('32-size');
@@ -248,4 +215,3 @@ borderBtn.addEventListener('click',() => {
     });
     
 });
-
